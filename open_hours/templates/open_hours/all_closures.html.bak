@@ -1,0 +1,18 @@
+{% for all_closures in all_closures %}
+{% if all_closures.closed_date_from == all_closures.closed_date_to %}
+{# this returns true for single day closures #}
+{{ all_closures.all_day }}
+<div class="closed-for">{{ all_closures.closed_date_from|date:"l, F d" }}: <span class="closed-for-span">Closed for {{ all_closures.closed_date_name }}</span></div>
+{% elif all_closures.closed_date_from != all_closures.closed_date_to %}
+{{ all_closures.all_day }}
+{# this returns true for multiday closures #}
+<div class="closed-for">
+{{ all_closures.closed_date_from|date:"l, F d" }} to {{ all_closures.closed_date_to|date:"l, F d" }}: <span class="closed-for-span">Closed for {{ all_closures.closed_date_name }}</span></div>
+{# all_closures.time_from #} {# all_closures.time_to #}
+{% endif %}
+{% empty %}
+{# returns true if there are no closures entered, or if all closures are in the past #}
+<div>There are no upcoming scheduled closures.</div>
+{% endfor %}
+
+{# this returns true alternate hours #}

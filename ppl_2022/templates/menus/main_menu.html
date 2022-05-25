@@ -1,0 +1,20 @@
+{% load static wagtailcore_tags menu_tags %}
+
+<div id="mainMenu" class="collapse navbar-collapse">
+<ul class="navbar-nav ms-auto">
+{% for item in menu_items %}
+<li class="nav-item dropdown {% if item.handle != '' %}{{ item.handle }}{% endif %}">
+  <a class="nav-link dropdown-toggle" href="{{ item.href }}" data-bs-toggle="dropdown"> {{ item.text }}</a>
+{% if item.has_children_in_menu and item.handle != '' %}
+<div class="dropdown-menu megamenu" role="menu">
+  <div class="row g-3">
+      {% sub_menu item template="menus/menu_mega.html" %}
+  </div>
+</div>
+
+{% elif item.has_children_in_menu and item.handle == '' %}
+<ul class="dropdown-menu">
+  {% sub_menu item template="menus/menu_dropdown.html" %}
+</ul>
+{% endif %}
+{% endfor %}

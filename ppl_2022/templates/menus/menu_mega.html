@@ -1,0 +1,9 @@
+{% load static wagtailcore_tags menu_tags %}
+{% for item in menu_items %}
+<div class="col-lg-3 col-6">
+<div class="col-megamenu">
+  <h6 class="title">{{ item.text }}</h6>
+  {% sub_menu item template="menus/level_3.html" %}
+</div>
+</div>
+{% endfor %}

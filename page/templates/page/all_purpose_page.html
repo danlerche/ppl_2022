@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailuserbar menu_tags wagtailimages_tags open_hours_tags library_programs_tags %}
+{% include_block page.content %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div id="contentArea" class="content col-xl-12">
+{% for block in page.content %}
+{% if block.block_type == 'heading' %}
+<section class="block-heading-area"><h2>{% include_block block %}</h2></section>
+
+{% elif block.block_type == 'ppl_map' and block.value == True %}
+<iframe marginwidth="0" marginheight="0" scrolling="no" width="425" height="350" frameborder="0"
+src="https://www.google.com/maps/d/embed?mid=1Y8Ajzgh-icL5icy_DtdByBbPgz_gJDK-" width="640" height="480"></iframe>
+
+{% elif block.block_type == 'PhoneNumberBlock' %}
+
+<a href="tel:{% include_block block %}">{% include_block block %}</a>
+
+
+{% elif block.block_type == 'map' %}
+
+{% include_block block %}
+
+{% elif block.block_type == 'BlockQuoteBlock' %}
+
+{% include_block block %}
+
+{% elif block.block_type == 'show_business_hours' and block.value == True %}
+
+{% business_hours %}
+
+{% elif block.block_type == 'all_upcoming_events' and block.value == True %}
+
+{% all_upcoming_events %}
+
+{# elif block.block_type == 'Calendar' #}
+
+{# upcoming_events_by_calendar cal_id=block.value #}
+
+{% elif block.block_type == 'show_business_hours' and block.value == False %}
+
+{% elif block.block_type == 'show_next_closure' and block.value == True %}
+
+{% next_closure %}
+
+{% elif block.block_type == 'show_next_closure' and block.value == False %}
+
+{% elif block.block_type == 'show_all_closures' and block.value == True %}
+
+{% all_closures %}
+
+{% elif block.block_type == 'show_all_closures' and block.value == False %}
+
+{% elif block.block_type == 'accordion' %}
+<div class="row mb-2">
+{% include_block block %}
+</div>
+
+{% elif block.block_type == 'bookClub' %}
+
+	{% if forloop.first %}
+	<div id="accordion">
+	{% endif %}
+
+{% include_block block %}
+
+{# book club template is under basic_page/templates/basic_page/blocks/book_club.html #}
+
+{% else %}
+<section class="block-{{ block.block_type }}">
+{% include_block block %}
+</section>
+
+{% endif %}
+{% endfor %}
+
+</div>
+</div><!--content area-->
+</div><!--end container-->
+</div><!--end row-->
+{% endblock %}

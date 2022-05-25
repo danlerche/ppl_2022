@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailuserbar wagtailimages_tags %}
+{% include_block page.content %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div id="contentArea" class="content col-xl-12">
+<div class="date">{{ page.time_from|date:"g:i A" }} - {{ page.time_to|date:"g:i A" }} | {{ page.start_date }}</div>
+{% if page.repeats_id != None %} <div class="rule mb-1">Repeats {{ page.repeats|lower }} through {{ page.until }}</div>{% endif %}
+  <p>{{ page.description|richtext }} </p>
+  <div class="cal-name mb-2"><strong>{{ page.event_category }}</strong></div>
+</div>
+</div>
+</div>
+
+{% endblock %}
