@@ -1,5 +1,5 @@
 {% load static wagtailcore_tags %}
-<div>The library closes in <span id="time">{% if seconds_remaining == 00 %} {{ minutes_remaining }}{% else %}{{ minutes_remaining|add:"1" }}{% endif %}</span> minutes. See <a href="{{ open_hours.branch_info.hours_page.url }}">hours</a></div>
+<div id="OpenHoursAlert">The library closes in <span id="time">{% if seconds_remaining == 00 %} {{ minutes_remaining }}{% else %}{{ minutes_remaining|add:"1" }}{% endif %}</span> minutes. See <a href="{{ open_hours.branch_info.hours_page.url }}">hours</a></div>
 <script>
 var template_minutes_remain = {{ minutes_remaining|add:"1" }};
 var minutes_to_seconds = template_minutes_remain * 60;

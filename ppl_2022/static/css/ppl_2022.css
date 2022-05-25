@@ -91,7 +91,7 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
   letter-spacing: 1px;
 }
 
-#hoursMessage, #hoursMessage a {color: #fff; font-size: .95em;}
+#hoursMessage, #OpenHoursAlert a, #hoursMessage a {color: #fff; font-size: .95em;}
 
 #OpenHoursAlert a:hover {
   color: #fff; font-weight: bold;

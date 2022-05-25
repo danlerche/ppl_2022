@@ -4,6 +4,7 @@
 <div class="col-xl-7 pt-2">
 {% for events in all_upcoming_events %}
 {# need a template tag that views if the start date is earlier than today's date. If so, display the next time in the series #}
+<div class="col mb-5">
 <div class="row">
 <div class="col-xl-1">
 <div class="date-icon">
@@ -20,7 +21,7 @@
   <p>{{ events.description|richtext }} </p>
   <div class="cal-name mb-2"><strong>{{ events.event_category }}</strong></div>
 </div>
-
+</div>
 {% endfor %}
 </div>
 </div>
