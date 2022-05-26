@@ -54,7 +54,7 @@ iframe, .elementor object, .elementor video {
 
 #contentArea {padding-top: 12px;}
 #contentArea h2 {border-bottom: 4px solid #22b24c;padding-bottom: 20px; font-weight: bold !important;}
-#contentArea blockquote {font-style: italic;font-weight: bold; font-size: 1.5em;}
+#contentArea blockquote {font-style: italic;font-weight: bold; font-size: 1.5em; color: #594a41;}
 section.block-columnBlock blockquote {margin-top: 110px;}
 #contentArea form label {font-weight: bold;}
 
