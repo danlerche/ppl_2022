@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'webform',
     'library_programs',
+    'online_resource',
 ]
 
 MIDDLEWARE = [

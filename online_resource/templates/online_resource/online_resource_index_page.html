@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div id="contentArea" class="content col-xl-12">
+
+<div id="onlineresource">
+<div class="intro">{{ page.intro|richtext }}</div>
+
+ <div class="form-group mb-3">
+  <label for="sel1">Subject</label>
+
+  <select id="selectCategory" onchange="showOptions()">
+    <option value="0" selected="selected">A-Z</option>
+   {% for cat in categories %}
+    <option value="{{ cat.id }}">{{ cat.name }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<div id="allonline_resources" class="hide container">
+{% for post in online_resource_pages %}
+     {% with post=post.specific %}
+     <div class="border-bottom row mb-3">
+      <div class="categories col-4 col-md-2">
+         {% with categories=post.specific.categories.all %}
+        {% if categories %}
+        {% for category in categories %}
+        <div class="category-image">
+        {% if forloop.first %}
+        <a href="{{ post.specific.online_resource_url }}"> {% image category.category_image class="img-fluid" fill-230x175 %}</a>
+        {% endif %}
+        </div>
+          {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="access-now mt-2 mb-2">
+        <a href="{{ post.specific.online_resource_url }}" class="btn">Access Now</a>
+      </div>
+      </div>
+        <div class="col-8 col-md-6">
+          <h3><a href="{{ post.specific.online_resource_url }}">{{ post.title }}</a></h3>
+        {{ post.specific.online_resource_description|richtext }}
+        </div>
+    </div>
+      {% endwith %}
+    {% endfor %}
+</div>
+
+{% for cat in categories %}
+
+<div id="{{ cat.name|slugify }}" class="hide">
+{% for post in online_resource_pages %}
+  {% with categories=post.specific.categories.all %}
+  {% if categories %}
+  {% for category in categories %}
+  {% if category.name == cat.name %}
+  <div class="card">
+  <h3 class="card-title"><a href="{{ post.specific.online_resource_url }}">{{ post.title }}</a></h3>
+   {{ post.specific.online_resource_description|richtext }}
+   <div class="access-now mt-2 mb-2">
+        <a href="{{ post.specific.online_resource_url }}" class="btn">Access Now</a>
+   </div>
+ </div>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+{% endfor %}
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+if (performance.navigation.type == 0 || performance.navigation.type == 1 || performance.navigation.type == 2) {
+    document.getElementById("selectCategory").selectedIndex = 0;
+    var hide =document.getElementsByClassName("hide");
+       for(var i = 0; i < hide.length; i++){
+        hide[i].style.display = "none";
+        document.getElementById("allonline_resources").style.display = "block";
+    }
+  }
+
+function showOptions() {
+var get_option_value = document.getElementById("selectCategory").value;
+  if (get_option_value ==0 ) {
+      var hide =document.getElementsByClassName("hide");
+       for(var i = 0; i < hide.length; i++){
+        hide[i].style.display = "none";
+        document.getElementById("allonline_resources").style.display = "block";
+    }
+  }
+{% for cat in categories %}
+  else if (get_option_value =="{{ cat.id }}" ) {
+    var cat_name ="{{ cat.name|slugify }}";
+    var show_hide, i;
+    show_hide = document.querySelectorAll('.hide:not(cat_name)');
+     for (i = 0; i < show_hide.length; i++) {
+        show_hide[i].style.display = "none";
+        document.getElementById(cat_name).style.display = "block";
+      }
+
+  }
+{% endfor %}
+}
+</script>
+
+{% endblock %}

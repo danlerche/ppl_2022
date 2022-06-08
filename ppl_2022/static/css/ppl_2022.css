@@ -3,6 +3,10 @@ body#background {background-color: #dedede;}
 #fsHeaderColour {background-color: #fff;}
 div {color:#594a41;}
 
+a.nav-link {color: #0066b3; }
+a:hover.nav-link {color: #463c30;}
+
+#topMenuMobile a.nav-link  {color:#463c30;}
 
 h3, p {color: #414042;}
 p {font-size: 1.1em;
@@ -11,7 +15,6 @@ font-weight: 400;}
 .date-icon {border-style: solid; border-width: 1px; border-color: #dedede; display: inline-block;}
 .date-icon-month {background-color: #000; color: #fff; font-weight: bold; text-align: center; font-size: .75rem; padding: 2px 10px 2px 10px; min-width: 48px;}
 .date-icon-day {font-weight: bold; text-align: center; padding: 2px 5px 2px 5px;}
-
 
 .event-listing h3 a {color:#594a41; text-decoration: none;}
 .event-listing h3 a:hover {text-decoration: underline;}
@@ -28,7 +31,10 @@ font-weight: 400;}
 #topMenu .nav-link {background-color: #0066b3; color: #fff; transition: all .3s;}
 #topMenu a.nav-link {font-weight: bold;}
 #topMenu a:hover.nav-link {background-color: #02345a;}
+#topMenuMobile {background-color: #dedede;}
+#topMenuMobile li.nav-item {background-color: #fff; margin-left: 1px;}
 #topMenuMobile nav {position: relative; margin-left: -5px; font-size: 14px; font-weight: bold;}
+#topMenuMobile .top-menu-icon {display: inline-block;; }
 
 #homepageMinHeight {min-height: 75px;}
 
@@ -36,9 +42,14 @@ footer {border-top: 5px solid #0066b3;}
 footer #footerMenu {font-size: 14px;}
 footer #footerSocial {font-size: 1.2em;}
 footer a.nav-link {color: #fff;}
+footer a:hover.nav-link {font-weight: bold; color: #fff;}
 footer a:visited.nav-lnk {color: #0066b3;}
 footer {background-color: #000;}
 footer p {color: #fff;}
+
+@media only screen and (max-width: 991px) {
+#footerMenu ul {flex-direction: column !important;}
+}
 
 iframe, .elementor object, .elementor video {
   max-width: 100%;
@@ -99,3 +110,5 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
 
 
 .megamenu h6 {font-weight: bold; }
+form input[type = submit] {background-color: #0066b3; color: #fff;}
+form input[type="submit"].btn:hover {background-color: #0066b3; font-weight: bold;}
