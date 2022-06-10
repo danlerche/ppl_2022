@@ -28,6 +28,10 @@ src="https://www.google.com/maps/d/embed?mid=1Y8Ajzgh-icL5icy_DtdByBbPgz_gJDK-" 
 
 {% include_block block %}
 
+{% elif block.block_type == 'URLBlock' %}
+
+<a href="{% include_block block %}">{% include_block block %}</a>
+
 {% elif block.block_type == 'BlockQuoteBlock' %}
 
 {% include_block block %}
