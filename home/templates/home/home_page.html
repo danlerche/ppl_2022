@@ -13,11 +13,11 @@
 <div id="homepageMinHeight" class="col-lg-12">
 <p>{{ page.title }}</p>
 
-
+{% for features in page.homepage_feature.all %}
+{{ features.aspen_collection_spotlight_iframe|safe }}
+{% endfor %}
 </div>
 </div>
 </div>
-
-
 
 {% endblock content %}

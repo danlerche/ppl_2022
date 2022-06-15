@@ -48,6 +48,7 @@ class AllPurposePage(Page):
         ('DateTimeBlock', DateBlock()),
         ('PageChooserBlock', PageChooserBlock()),
         ('DocumentChooserBlock', DocumentChooserBlock()),
+        ('IframeBlock', blocks.RawHTMLBlock(help_text="See https://search.pentictonlibrary.ca/Admin/CollectionSpotlights for info about using the iframe tag to embed Aspen Collection Spotlights.")),
         ('PhoneNumberBlock', TextBlock()),
         ('EmbedBlock', EmbedBlock()),
         ('ppl_map', BooleanBlock(required=False, help_text="If checked, a Google map will appear", icon='user')),
