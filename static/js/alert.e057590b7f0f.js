@@ -4,7 +4,7 @@ $('#ticker-form').on('submit', function(event){
 });
 
 function close_ticker() {
-  console.log($('#id_ticker').val())
+  //console.log($('#id_ticker').val())
     $.ajax({
         url : "", // the endpoint
         type : "POST", // http method

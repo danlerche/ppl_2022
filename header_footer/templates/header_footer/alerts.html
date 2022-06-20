@@ -1,15 +1,16 @@
-{% load wagtailcore_tags %}
+{% load static wagtailcore_tags %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/alert.css' %}"/>
 {% for green_alert in green_alerts %}
-<div id="alertBanner" class="alert-green mt-1 mb-1">
+<div id="alertBanner" class="alert-green mb-1">
 <div class="container">
 <div class="alert-item-green row {% if close_ticker == True %}collapse {% elif close_ticker == False %}collapse show{% endif %}">
-<!--<div class="alert-date col-2 mt-2">{{ green_alert.alert_date|date:"M d, Y" }}</div>-->
-<div class="alert-text mt-2 col-11">{{ green_alert.alert_text | richtext }}</div>
+<!--Uncomment if you want to use alert dates.<div class="alert-date col-2 mt-2">{{ green_alert.alert_date|date:"M d, Y" }}</div>-->
+<div class="alert-text col-11 text-center">{{ green_alert.alert_text | richtext }}</div>
 {% if forloop.first %}
 <form action="/ticker/" id="ticker-form" method="POST" class="alert-on-off col-1" class="collapse alert-item-green show">
 {% csrf_token %}
 {{ close_ticker_form }}
-<button type="submit" value="Submit" class="close" data-bs-toggle="collapse" data-bs-target=".alert-item-green" aria-expanded="false" aria-controls="alert-item-green">&times;</button>
+<button type="submit" value="Submit" class="close mt-2" data-bs-toggle="collapse" data-bs-target=".alert-item-green" aria-expanded="false" aria-controls="alert-item-green">&times;</button>
 </form>
 {% endif %}
 </div>
@@ -18,19 +19,20 @@
 {% endfor %}
 
 {% for red_alert in red_alerts %}
-<div id="alertBanner" class="alert-red mt-1 mb-1">
+<div id="alertBanner" class="alert-red mb-1">
 <div class="container">
 <div class="alert-item-red row {% if close_ticker == True %}collapse {% elif close_ticker == False %}collapse show{% endif %}">
-<!--<div class="alert-date col-2 mt-2">{{ red_alert.alert_date|date:"M d, Y" }}</div>-->
-<div class="alert-text col-11">{{ red_alert.alert_text | richtext }}</div>
+<!--Uncomment if you want to use alert dates. <div class="alert-date col-2 mt-2">{{ red_alert.alert_date|date:"M d, Y" }}</div>-->
+<div class="alert-text col-11 text-center">{{ red_alert.alert_text | richtext }}</div>
 {% if forloop.first %}
 <form action="/ticker/" id="ticker-form" method="POST" class="alert-on-off col-1" class="collapse alert-item-red show">
 {% csrf_token %}
 {{ close_ticker_form }}
-<button type="submit" value="Submit" class="close mt-3" data-bs-toggle="collapse" data-bs-target=".alert-item-red" aria-expanded="false" aria-controls="alert-item-red">&times;</button>
+<button type="submit" value="Submit" class="close mt-2" data-bs-toggle="collapse" data-bs-target=".alert-item-red" aria-expanded="false" aria-controls="alert-item-red">&times;</button>
 </form>
 {% endif %}
 </div>
 </div>
 </div>
 {% endfor %}
+<script src="{% static 'js/alert.js' %}" type="text/javascript"></script>

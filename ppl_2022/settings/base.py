@@ -92,6 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'wagtail.contrib.settings.context_processors.settings',
                 'wagtailmenus.context_processors.wagtailmenus',
             ],
         },
@@ -185,3 +186,21 @@ WAGTAILSEARCH_BACKENDS = {
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'https://danlerch.ca'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+WAGTAILDOCS_SERVE_METHOD = 'direct'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'securemail.webnames.ca'
+#EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'contact@pentictonlibrary.ca'
+EMAIL_HOST_PASSWORD = 'Aqw8y728MDdpS5V'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+
+CACHES = {
+'default': {
+'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
+}
+}
+SESSION_COOKIE_AGE = 7200
