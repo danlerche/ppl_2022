@@ -188,14 +188,6 @@ BASE_URL = 'https://danlerch.ca'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 WAGTAILDOCS_SERVE_METHOD = 'direct'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'securemail.webnames.ca'
-#EMAIL_USE_TLS = True
-EMAIL_USE_SSL = True
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'contact@pentictonlibrary.ca'
-EMAIL_HOST_PASSWORD = 'Aqw8y728MDdpS5V'
-
 SESSION_ENGINE = 'django.contrib.sessions.backends.file'
 
 CACHES = {

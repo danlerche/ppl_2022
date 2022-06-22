@@ -1,14 +1,25 @@
 body {font-family: Tahoma,Verdana,Segoe,sans-serif; }
 body#background {background-color: #dedede;}
+h1 {font-family: 'Montserrat', sans-serif; color: #4E4C4F; font-weight: bold !important; font-size: 42px !important;}
+h2 {font-family: 'Montserrat', sans-serif; color: #0066B3; text-transform: uppercase; font-weight: 600 !important;32px !important;}
+h3 {font-family: 'Montserrat', sans-serif; color: #4E4C4F; text-transform: uppercase; font-weight: 400 !important;}
+h4 {font-family: 'Montserrat', sans-serif; color: #0066B3; text-transform: uppercase; font-weight: 350 !important;}
+h5 {font-family: 'Montserrat', sans-serif; color: #0066B3; font-weight: 200 !important;}
+
+
+
+
 #fsHeaderColour {background-color: #fff;}
 div {color:#594a41;}
+#titleBox {background-color: #fff;}
 
-a.nav-link {color: #0066b3; }
+a.nav-link {color: #019FE2; }
 a:hover.nav-link {color: #463c30;}
 
 #topMenuMobile a.nav-link  {color:#463c30;}
 
-h3, p {color: #414042;}
+
+p {color: #414042;}
 p {font-size: 1.1em;
 font-weight: 400;}
 
@@ -28,7 +39,7 @@ font-weight: 400;}
 #mainNav .dropdown-toggle {font-weight: bold;}
 
 #topMenu .nav-item {margin-left: 1rem;}
-#topMenu .nav-link {background-color: #0066b3; color: #fff; transition: all .3s;}
+#topMenu .nav-link {background-color: #019FE2; color: #fff; transition: all .3s;}
 #topMenu a.nav-link {font-weight: bold;}
 #topMenu a:hover.nav-link {background-color: #02345a;}
 #topMenuMobile {background-color: #dedede;}
@@ -38,12 +49,12 @@ font-weight: 400;}
 
 #homepageMinHeight {min-height: 75px;}
 
-footer {border-top: 5px solid #0066b3;}
+footer {border-top: 5px solid #019FE2;}
 footer #footerMenu {font-size: 14px;}
 footer #footerSocial {font-size: 1.2em;}
 footer a.nav-link {color: #fff;}
 footer a:hover.nav-link {font-weight: bold; color: #fff;}
-footer a:visited.nav-lnk {color: #0066b3;}
+footer a:visited.nav-lnk {color: #019FE2;}
 footer {background-color: #000;}
 footer p {color: #fff;}
 
@@ -56,15 +67,12 @@ iframe, .elementor object, .elementor video {
   width: 100%;
   margin: 0;
   line-height: 1;
-  border: none;
+  border: none;font-family: 'Montserrat', sans-serif;
 }
 
-#titleBox {background-color: #0066b3; }
-#titleBox h1, #titleBox a {color: #fff;}
 .brdcrumb li {list-style-type: none;}
 
 #contentArea {padding-top: 12px;}
-#contentArea h2 {border-bottom: 4px solid #22b24c;padding-bottom: 20px; font-weight: bold !important;}
 #contentArea blockquote {font-style: italic;font-weight: bold; font-size: 1.5em; color: #594a41;}
 section.block-columnBlock blockquote {margin-top: 110px;}
 #contentArea form label {font-weight: bold;}
@@ -89,7 +97,7 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
 /* #22b24c */
 
 #OpenHoursAlert {
-  background-color: #0066b3;
+  background-color: #019FE2;
   color: #fff;
   min-height: 35px;
   font-size: 1.1em;
@@ -110,5 +118,5 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
 
 
 .megamenu h6 {font-weight: bold; }
-form input[type = submit] {background-color: #0066b3; color: #fff;}
-form input[type="submit"].btn:hover {background-color: #0066b3; font-weight: bold;}
+form input[type = submit] {background-color: #019FE2; color: #fff;}
+form input[type="submit"].btn:hover {background-color: #019FE2; font-weight: bold;}
