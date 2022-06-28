@@ -19,13 +19,45 @@ from wagtail.contrib.typed_table_block.blocks import TypedTableBlock
 from unidecode import unidecode
 from django.template import defaultfilters
 from library_programs.models import EventCategory
-
+from wagtail.fields import RichTextField
+from wagtail.snippets.models import register_snippet
+from django import forms
+from wagtail.admin import widgets
 
 class groupPage(Page):
     pass
 
+
+@register_snippet
+class PolicyCategory(models.Model):
+    policy_category = models.CharField(max_length=255)
+
+    panels = [
+        FieldPanel('policy_category'),
+    ]
+
+    def __str__(self):
+        return self.policy_category
+
+    class Meta:
+        verbose_name_plural = 'Policy categories'
+
+
+class PolicyIndexPage(Page):
+    additional_text = RichTextField(blank=True)
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        policy_pages = self.get_children().live()
+        context['policy_pages'] = policy_pages
+        return context
+
+    content_panels = Page.content_panels + [
+        FieldPanel('additional_text', classname="full")
+    ]
+
 class AllPurposePage(Page):
-# tutorial to add web forms to the pages. Not a stream for but who cares https://stackoverflow.com/questions/48636619/wagtail-feedback-form-in-homepage
+# tutorial to add web forms to the pages. Not a stream form but who cares https://stackoverflow.com/questions/48636619/wagtail-feedback-form-in-homepage
     #try:
     #    event_category_choice = EventCategory.objects.values_list('id', 'category_name')
     #except:
@@ -51,7 +83,7 @@ class AllPurposePage(Page):
         ('IframeBlock', blocks.RawHTMLBlock(help_text="See https://search.pentictonlibrary.ca/Admin/CollectionSpotlights for info about using the iframe tag to embed Aspen Collection Spotlights.")),
         ('PhoneNumberBlock', TextBlock()),
         ('EmbedBlock', EmbedBlock()),
-        ('ppl_map', BooleanBlock(required=False, help_text="If checked, a Google map will appear", icon='user')),
+        ('ppl_map', BooleanBlock(reqonline_resourceuired=False, help_text="If checked, a Google map will appear", icon='user')),
         ('map', blocks.StructBlock([
             ('address', GeoAddressBlock(required=True)),
             ('map', GeoBlock(address_field='address')),
@@ -98,8 +130,20 @@ class AllPurposePage(Page):
             ], template='page/blocks/accordion.html', icon='collapse-down')),
 
     ], blank=True)
+
+    policy_category = models.ForeignKey(PolicyCategory, on_delete=models.SET_NULL, null=True, blank=True, related_name='pol_cat')
+
+
+    # you can create them separately
+    select_widget = forms.Select(
+        attrs = {
+            'placeholder': 'Select an optional policy category'
+        }
+    )
+
     content_panels = Page.content_panels + [
         StreamFieldPanel('content'),
+        FieldPanel('policy_category', widget=select_widget,  help_text='select an optional policy category'),
     ]
 
     # Search index configuration

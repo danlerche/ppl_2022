@@ -5,9 +5,18 @@ h2 {font-family: 'Montserrat', sans-serif; color: #0066B3; text-transform: upper
 h3 {font-family: 'Montserrat', sans-serif; color: #4E4C4F; text-transform: uppercase; font-weight: 400 !important;}
 h4 {font-family: 'Montserrat', sans-serif; color: #0066B3; text-transform: uppercase; font-weight: 350 !important;}
 h5 {font-family: 'Montserrat', sans-serif; color: #0066B3; font-weight: 200 !important;}
+#mainMenu {font-family: 'Montserrat', sans-serif;}
+#mainMenu a.nav-link {font-size: 1.24rem; font-weight: 1200 !important;}
+#mainMenu h6.title {font-weight: bold;}
 
-
-
+@media all and (min-width: 992px) {
+#mainMenu .nav-item {margin-left: 40px;}
+#mainMenu .mega-menu-children li {border-bottom: 1px solid #dedede; margin-top: 4px; }
+#mainMenu ul.dropdown-menu li {border-bottom: 1px solid #dedede; }
+#mainMenu .mega-menu-children a, #mainMenu ul.basic-dropdown a.dropdown-item {text-decoration: none; color: #019FE2;}
+#mainMenu .mega-menu-children a:hover {color: #4e4c4f;}
+#mainMenu .basic-dropdown[data-bs-popper] { top: 151%; left: -192px; padding-bottom: 13px; padding-left: 15px; padding-right: 15px;}
+}
 
 #fsHeaderColour {background-color: #fff;}
 div {color:#594a41;}
@@ -16,7 +25,7 @@ div {color:#594a41;}
 a.nav-link {color: #019FE2; }
 a:hover.nav-link {color: #463c30;}
 
-#topMenuMobile a.nav-link  {color:#463c30;}
+#topMenuMobile a.nav-link  {color:#463c30}
 
 
 p {color: #414042;}

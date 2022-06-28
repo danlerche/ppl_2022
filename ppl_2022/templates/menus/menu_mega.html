@@ -1,9 +1,47 @@
 {% load static wagtailcore_tags menu_tags %}
 {% for item in menu_items %}
-<div class="col-lg-3 col-6">
+
+{# changes the bootstrap column row depending on how many mega menu categories there are #}
+
+{% if forloop.last == True and forloop.counter == 1 %}
+{% for item in menu_items %}
+<div class="col-12">
 <div class="col-megamenu">
   <h6 class="title">{{ item.text }}</h6>
   {% sub_menu item template="menus/level_3.html" %}
 </div>
 </div>
+{% endfor %}
+
+{% elif forloop.last == True and forloop.counter == 2 %}
+{% for item in menu_items %}
+<div class="col-6">
+<div class="col-megamenu">
+  <h6 class="title">{{ item.text }}</h6>
+  {% sub_menu item template="menus/level_3.html" %}
+</div>
+</div>
+{% endfor %}
+
+{% elif forloop.last == True and forloop.counter == 3 %}
+{% for item in menu_items %}
+<div class="col-4">
+<div class="col-megamenu">
+  <h6 class="title">{{ item.text }}</h6>
+  {% sub_menu item template="menus/level_3.html" %}
+</div>
+</div>
+{% endfor %}
+
+{% elif forloop.last == True and forloop.counter == 4 %}
+{% for item in menu_items %}
+<div class="col-2">
+<div class="col-megamenu">
+  <h6 class="title">{{ item.text }}</h6>
+  {% sub_menu item template="menus/level_3.html" %}
+</div>
+</div>
+{% endfor %}
+{% endif %}
+
 {% endfor %}

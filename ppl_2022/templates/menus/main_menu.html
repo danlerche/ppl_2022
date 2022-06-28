@@ -7,13 +7,13 @@
   <a class="nav-link dropdown-toggle" href="{{ item.href }}" data-bs-toggle="dropdown"> {{ item.text }}</a>
 {% if item.has_children_in_menu and item.handle != '' %}
 <div class="dropdown-menu megamenu" role="menu">
-  <div class="row g-3">
+  <div class="row">
       {% sub_menu item template="menus/menu_mega.html" %}
   </div>
 </div>
 
 {% elif item.has_children_in_menu and item.handle == '' %}
-<ul class="dropdown-menu">
+<ul class="dropdown-menu basic-dropdown">
   {% sub_menu item template="menus/menu_dropdown.html" %}
 </ul>
 {% endif %}
