@@ -5,6 +5,7 @@
 {% block body_class %}template-blogindexpage{% endblock %}
 
 {% block content %}
+
 <div class="container">
 <div class="row">
 <div id="contentArea" class="content col-xl-12">
@@ -16,7 +17,7 @@
   <label for="sel1">Subject</label>
 
   <select id="selectCategory" onchange="showOptions()">
-    <option value="0" selected="selected">A-Z</option>
+    <option value="0" selected="selected">-Any-</option>
    {% for cat in categories %}
     <option value="{{ cat.id }}">{{ cat.name }}</option>
     {% endfor %}
@@ -81,7 +82,6 @@
 </div>
 </div>
 </div>
-
 <script>
 if (performance.navigation.type == 0 || performance.navigation.type == 1 || performance.navigation.type == 2) {
     document.getElementById("selectCategory").selectedIndex = 0;
