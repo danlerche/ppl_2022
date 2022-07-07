@@ -23,6 +23,9 @@ from wagtail.fields import RichTextField
 from wagtail.snippets.models import register_snippet
 from django import forms
 from wagtail.admin import widgets
+from django.shortcuts import redirect
+from django.utils.html import format_html
+
 
 class groupPage(Page):
     pass
@@ -150,3 +153,28 @@ class AllPurposePage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('content'),
     ]
+
+class RedirectorPage(Page):
+    redirect_to = models.URLField(
+        help_text='The URL to redirect to',
+        blank=False,
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('redirect_to', classname="full"),
+    ]
+
+    def get_admin_display_title(self):
+        return format_html(f"{self.draft_title}<br/>➡️ {self.redirect_to}")
+
+    class Meta:
+        verbose_name = 'Redirector'
+
+    def get_url(self, request=None, current_site=None):
+        return self.redirect_to
+
+    def get_full_url(self, request=None, current_site=None):
+        return self.redirect_to
+
+    def serve(self, request):
+        return redirect(self.redirect_to)
