@@ -131,3 +131,6 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
 .megamenu h6 {font-weight: bold; }
 form input[type = submit] {background-color: #019FE2; color: #fff;}
 form input[type="submit"].btn:hover {background-color: #019FE2; font-weight: bold;}
+
+#homepage #features a {text-decoration: none;}
+#homepage #features h2 {font-size: 1.1em; text-transform: none; color:#594a41;}
