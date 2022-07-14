@@ -51,11 +51,14 @@ class OnlineResourceIndexPage(Page):
 class OnlineResourcePage(Page):
     online_resource_url = models.CharField(max_length=400, blank=True)
     online_resource_description = RichTextField(blank=True)
+    resource_image = models.ForeignKey('wagtailimages.Image', null=True, blank=True, on_delete=models.SET_NULL,related_name='+')
     categories = ParentalManyToManyField('online_resource.OnlineResourceCategory', blank=True)
+    featured = models.BooleanField(default=False)
 
     content_panels = Page.content_panels + [
         FieldPanel('online_resource_url'),
         FieldPanel('online_resource_description'),
+        FieldPanel('resource_image'),
         FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
-
+        FieldPanel('featured'),
     ]

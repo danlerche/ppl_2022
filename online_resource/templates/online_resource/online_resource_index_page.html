@@ -30,8 +30,8 @@
      {% for cat in categories %}
      <div class="category cat-id-{{ cat.id }}-{{ cat.name|slugify }} border-bottom row mb-3">
       <div class="categories col-4 col-md-2">
-      <div class="access-now mt-2 mb-2">
-        <a href="{{ post.specific.online_resource_url }}" class="btn">Access Now</a>
+      <div class="resource-image mt-2 mb-2">
+      <a href="{{ post.specific.online_resource_url }}">{% image post.specific.resource_image class="img-fluid" width-150 %}</a>
       </div>
       </div>
         <div class="col-8 col-md-6">
