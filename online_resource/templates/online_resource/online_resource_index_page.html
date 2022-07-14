@@ -14,32 +14,22 @@
 <div class="intro">{{ page.intro|richtext }}</div>
 
  <div class="form-group mb-3">
-  <label for="sel1">Subject</label>
-
-  <select id="selectCategory" onchange="showOptions()">
-    <option value="0" selected="selected">-Any-</option>
-   {% for cat in categories %}
-    <option value="{{ cat.id }}">{{ cat.name }}</option>
-    {% endfor %}
-  </select>
+   <ul id="checkBoxCategory" class="list-group database-categories">
+      {% for cat in categories %}
+   <li class="list-group-item"><input type="checkbox" id="cat-id-{{ cat.id }}-{{ cat.name|slugify }}" class="db-option" name="category-selection" value="cat-id-{{ cat.id }}-{{ cat.name|slugify }}" onChange="showOptions()">
+   <label for="cat-id-{{ cat.id }}-{{ cat.name|slugify }}"> {{ cat.name }}</label></li>
+       {% endfor %}
+   </ul>
 </div>
 
-<div id="allonline_resources" class="hide container">
+<div id="onlineResources" class="container">
 {% for post in online_resource_pages %}
      {% with post=post.specific %}
-     <div class="border-bottom row mb-3">
+     {% with categories=post.specific.categories.all %}
+     {% if categories %}
+     {% for cat in categories %}
+     <div class="category cat-id-{{ cat.id }}-{{ cat.name|slugify }} border-bottom row mb-3">
       <div class="categories col-4 col-md-2">
-         {% with categories=post.specific.categories.all %}
-        {% if categories %}
-        {% for category in categories %}
-        <div class="category-image">
-        {% if forloop.first %}
-        <a href="{{ post.specific.online_resource_url }}"> {% image category.category_image class="img-fluid" fill-230x175 %}</a>
-        {% endif %}
-        </div>
-          {% endfor %}
-      {% endif %}
-      {% endwith %}
       <div class="access-now mt-2 mb-2">
         <a href="{{ post.specific.online_resource_url }}" class="btn">Access Now</a>
       </div>
@@ -49,71 +39,56 @@
         {{ post.specific.online_resource_description|richtext }}
         </div>
     </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
       {% endwith %}
     {% endfor %}
 </div>
 
-{% for cat in categories %}
-
-<div id="{{ cat.name|slugify }}" class="hide">
-{% for post in online_resource_pages %}
-  {% with categories=post.specific.categories.all %}
-  {% if categories %}
-  {% for category in categories %}
-  {% if category.name == cat.name %}
-  <div class="card">
-  <h3 class="card-title"><a href="{{ post.specific.online_resource_url }}">{{ post.title }}</a></h3>
-   {{ post.specific.online_resource_description|richtext }}
-   <div class="access-now mt-2 mb-2">
-        <a href="{{ post.specific.online_resource_url }}" class="btn">Access Now</a>
-   </div>
- </div>
-  {% endif %}
-  {% endfor %}
-  {% endif %}
-  {% endwith %}
-{% endfor %}
-</div>
-
-{% endfor %}
-
 </div>
 
 </div>
 </div>
 </div>
+
+
 <script>
-if (performance.navigation.type == 0 || performance.navigation.type == 1 || performance.navigation.type == 2) {
-    document.getElementById("selectCategory").selectedIndex = 0;
-    var hide =document.getElementsByClassName("hide");
-       for(var i = 0; i < hide.length; i++){
-        hide[i].style.display = "none";
-        document.getElementById("allonline_resources").style.display = "block";
-    }
-  }
+  function showOptions() {
+      if($('.db-option:checked').length ==0) {
+        console.log('nothing is checked');
+        $('.category').removeClass( ' d-none ');
 
-function showOptions() {
-var get_option_value = document.getElementById("selectCategory").value;
-  if (get_option_value ==0 ) {
-      var hide =document.getElementsByClassName("hide");
-       for(var i = 0; i < hide.length; i++){
-        hide[i].style.display = "none";
-        document.getElementById("allonline_resources").style.display = "block";
-    }
-  }
-{% for cat in categories %}
-  else if (get_option_value =="{{ cat.id }}" ) {
-    var cat_name ="{{ cat.name|slugify }}";
-    var show_hide, i;
-    show_hide = document.querySelectorAll('.hide:not(cat_name)');
-     for (i = 0; i < show_hide.length; i++) {
-        show_hide[i].style.display = "none";
-        document.getElementById(cat_name).style.display = "block";
+      } else {
+        console.log('something is checked');
+
+        {% for cat in categories %}
+        var get_checkbox_id_{{ cat.id }} = document.getElementById("cat-id-{{ cat.id }}-{{ cat.name|slugify }}");
+
+         if (get_checkbox_id_{{ cat.id }}.checked == true) {
+          var category_classes = get_checkbox_id_{{ cat.id }}.value;
+          /* Find all classes that match the checked, checkbox */
+          const show_checked_divs =  document.getElementsByClassName(category_classes);
+          for (let i = 0; i < show_checked_divs.length; i++) {
+            show_checked_divs[i].classList.remove("d-none");
+          }
+        }
+
+        else if (get_checkbox_id_{{ cat.id }}.checked == false) {
+          var category_classes = get_checkbox_id_{{ cat.id }}.value;
+          /* Find all classes that match the checked, checkbox */
+          const hide_unchecked_divs =  document.getElementsByClassName(category_classes);
+          for (let i = 0; i < hide_unchecked_divs.length; i++) {
+            hide_unchecked_divs[i].classList.add("d-none");
+          }
+        }
+
+        {% endfor %}
+
       }
-
-  }
-{% endfor %}
-}
+    };
 </script>
+
+
 
 {% endblock %}
