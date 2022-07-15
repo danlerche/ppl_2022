@@ -8,19 +8,21 @@
 
 <div class="container">
 <div class="row">
-<div id="contentArea" class="content col-xl-12">
+
+  <div id="checkBoxCategory" class="form-group col-xl-9">
+    <ul class="database-categories">
+       {% for cat in categories %}
+    <li class="list-group-item"><input type="checkbox" id="cat-id-{{ cat.id }}-{{ cat.name|slugify }}" class="db-option" name="category-selection" value="cat-id-{{ cat.id }}-{{ cat.name|slugify }}" onChange="showOptions()">
+    <label for="cat-id-{{ cat.id }}-{{ cat.name|slugify }}"> {{ cat.name }}</label></li>
+        {% endfor %}
+    </ul>
+ </div>
+
+<div id="contentArea" class="content col-xl-9">
 
 <div id="onlineresource">
 <div class="intro">{{ page.intro|richtext }}</div>
 
- <div class="form-group mb-3">
-   <ul id="checkBoxCategory" class="list-group database-categories">
-      {% for cat in categories %}
-   <li class="list-group-item"><input type="checkbox" id="cat-id-{{ cat.id }}-{{ cat.name|slugify }}" class="db-option" name="category-selection" value="cat-id-{{ cat.id }}-{{ cat.name|slugify }}" onChange="showOptions()">
-   <label for="cat-id-{{ cat.id }}-{{ cat.name|slugify }}"> {{ cat.name }}</label></li>
-       {% endfor %}
-   </ul>
-</div>
 
 <div id="onlineResources" class="container">
 {% for post in online_resource_pages %}
@@ -35,7 +37,7 @@
       </div>
       </div>
         <div class="col-8 col-md-6">
-          <h3><a href="{{ post.specific.online_resource_url }}">{{ post.title }}</a></h3>
+          <h2><a href="{{ post.specific.online_resource_url }}">{{ post.title }}</a></h2>
         {{ post.specific.online_resource_description|richtext }}
         </div>
     </div>
@@ -44,9 +46,27 @@
 {% endwith %}
       {% endwith %}
     {% endfor %}
+
 </div>
 
 </div>
+
+</div>
+<div id="featuredResource" class="col-xl-3 d-none d-lg-block">
+<div class="card">
+<div id="featuredResourceTitle" class="pt-1 pb-1"><h3>Featured Resource</h3></div>
+{% for post in online_resource_pages %}
+{% if post.specific.featured == True %}
+  <div class="card-body">
+    <a href="{{ post.specific.online_resource_url }}">{% image post.specific.resource_image width-150 as db_feat_img %}
+  <img src="{{ db_feat_img.url }}" width="{{ db_feat_img.width }}" alt="{{ post.title }}" class="img-fluid">
+    </a>
+    <div class="card-text">{{ post.specific.online_resource_description|richtext }}</div>
+    <a href="{{ post.specific.online_resource_url }}" class="btn btn-primary">Access {{ post.title }}</a>
+  </div>
+</div>
+{% endif %}
+{% endfor %}
 
 </div>
 </div>
@@ -88,7 +108,4 @@
       }
     };
 </script>
-
-
-
 {% endblock %}

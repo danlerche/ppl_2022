@@ -5,6 +5,8 @@ h2 {font-family: 'Montserrat', sans-serif; color: #0066B3; font-weight: 600 !imp
 h3 {font-family: 'Montserrat', sans-serif; color: #4E4C4F; font-weight: 400 !important;}
 h4 {font-family: 'Montserrat', sans-serif; color: #0066B3; font-weight: 350 !important;}
 h5 {font-family: 'Montserrat', sans-serif; color: #0066B3; font-weight: 200 !important;}
+a.btn-primary {background-color: #019FE2 !important;}
+a.btn:hover {background-color: #02345a !important;}
 #mainMenu {font-family: 'Montserrat', sans-serif;}
 #mainMenu a.nav-link {font-size: 1.24rem; font-weight: 1200 !important;}
 #mainMenu h6.title {font-weight: bold;}
@@ -118,7 +120,7 @@ background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/s
   font-size: 16px;
   text-transform: uppercase;
   font-weight: normal;
-  letter-spacing: 1px;
+  letter-spacing: 1px;col-xl-9
 }
 
 #hoursMessage, #OpenHoursAlert a, #hoursMessage a {color: #fff; font-size: .95em;}
@@ -134,3 +136,10 @@ form input[type="submit"].btn:hover {background-color: #019FE2; font-weight: bol
 
 #homepage #features a {text-decoration: none;}
 #homepage #features h2 {font-size: 1.1em; text-transform: none; color:#594a41;}
+#checkBoxCategory {background-color: #d5d5d5;}
+#checkBoxCategory li.list-group-item {border: none; background-color: inherit;}
+#featuredResource {max-height: 450px;}
+#featuredResourceTitle {background-color: #fff;}
+#onlineResources h2 {font-size: 1.75rem;}
+#onlineresource h2 a {color: #019FE2;}
+#onlineresource h2 a:hover {color: #02345a !important;}
