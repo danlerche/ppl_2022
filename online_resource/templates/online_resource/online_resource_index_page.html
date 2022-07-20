@@ -20,11 +20,29 @@
 
 <div id="contentArea" class="content col-xl-9">
 
-<div id="onlineresource">
-<div class="intro">{{ page.intro|richtext }}</div>
 
+  <div id="onlineresource">
+  <div class="intro">{{ page.intro|richtext }}</div>
 
-<div id="onlineResources" class="container">
+  <div id="onlineResourcesFullList" class="container">
+  {% for post in online_resource_pages %}
+       {% with post=post.specific %}
+       <div class="category cat-id-{{ cat.id }}-{{ cat.name|slugify }} border-bottom row mb-3">
+        <div class="categories col-4 col-md-2">
+        <div class="resource-image mt-2 mb-2">
+        <a href="{{ post.specific.online_resource_url }}">{% image post.specific.resource_image class="img-fluid" width-150 %}</a>
+        </div>
+        </div>
+          <div class="col-8 col-md-6">
+            <h2><a href="{{ post.specific.online_resource_url }}">{{ post.title }}</a></h2>
+          {{ post.specific.online_resource_description|richtext }}
+          </div>
+      </div>
+      {% endwith %}
+      {% endfor %}
+  </div>
+
+<div id="onlineResourcesSelected" class="d-none container">
 {% for post in online_resource_pages %}
      {% with post=post.specific %}
      {% with categories=post.specific.categories.all %}
@@ -46,9 +64,7 @@
 {% endwith %}
       {% endwith %}
     {% endfor %}
-
 </div>
-
 </div>
 
 </div>
@@ -76,12 +92,10 @@
 <script>
   function showOptions() {
       if($('.db-option:checked').length ==0) {
-        console.log('nothing is checked');
-        $('.category').removeClass( ' d-none ');
-
+        /* if all items are unchecked by the user */
+        $('.category').removeClass(' d-none ');
       } else {
-        console.log('something is checked');
-
+        /* If a category has been checked */
         {% for cat in categories %}
         var get_checkbox_id_{{ cat.id }} = document.getElementById("cat-id-{{ cat.id }}-{{ cat.name|slugify }}");
 
@@ -96,7 +110,7 @@
 
         else if (get_checkbox_id_{{ cat.id }}.checked == false) {
           var category_classes = get_checkbox_id_{{ cat.id }}.value;
-          /* Find all classes that match the checked, checkbox */
+          /* Find all classes that match the checked checkbox */
           const hide_unchecked_divs =  document.getElementsByClassName(category_classes);
           for (let i = 0; i < hide_unchecked_divs.length; i++) {
             hide_unchecked_divs[i].classList.add("d-none");
@@ -107,5 +121,16 @@
 
       }
     };
-</script>
+    $('input[type="checkbox"]').click(function() {
+          if($(this).is(":checked")) {
+              $('#onlineResourcesFullList').addClass('d-none ');
+              $('#onlineResourcesSelected').removeClass('d-none ');
+
+            }
+            else if($(this).is(":not(:checked)")) {
+              $('#onlineResourcesSelected').addClass('d-none ');
+              $('#onlineResourcesFullList').removeClass('d-none ');
+            }
+          });
+  </script>
 {% endblock %}

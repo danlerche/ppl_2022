@@ -32,8 +32,8 @@ class OnlineResourceIndexPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        online_resource_pages = self.get_children().live()
-        categories = OnlineResourceCategory.objects.all()
+        online_resource_pages = self.get_children().live().order_by('title')
+        categories = OnlineResourceCategory.objects.all().order_by('name')
         context['online_resource_pages'] = online_resource_pages
         context['categories'] = categories
         return context
