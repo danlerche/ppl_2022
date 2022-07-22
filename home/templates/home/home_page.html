@@ -17,44 +17,37 @@
 
 <div class="row" id="features">
 {% for features in page.homepage_feature.all %}
+<div class="col-xl-4 col-md-6 col-12">
 {% if not features.home_page_feature_text and features.home_page_feature_page %}
-<div class="col-4">
 <a href="{{ features.home_page_feature_page.url }}">
 {% image features.home_page_feature_image class="img-fluid" fill-335x335-c100 %}
 <h2 class="mt-2">{{ features.home_page_feature_page }}</h2>
 </a>
-</div>
 {% elif not features.home_page_feature_text and not features.home_page_feature_page %}
-<div class="col-4">
 <a href="{{ features.home_page_feature_doc.url }}">
 {% image features.home_page_feature_image class="img-fluid" fill-335x335-c100 %}
 <h2 class="mt-2">{{ features.home_page_feature_doc }}</h2>
 </a>
-</div>
 {% elif features.home_page_feature_text and features.home_page_feature_doc %}
-<div class="col-4">
 <a href="{{ features.home_page_feature_doc.url }}">
 {% image features.home_page_feature_image class="img-fluid" fill-335x335-c100 %}
 <h2 class="mt-2">{{ features.home_page_feature_text }}</h2>
 </a>
-</div>
 {% elif features.home_page_feature_text and not features.home_page_feature_page %}
-<div class="col-4">
 <a href="{{ features.home_page_feature_doc.url }}">
 {% image features.home_page_feature_image class="img-fluid" fill-335x335-c100 %}
 <h2 class="mt-2">{{ features.home_page_feature_text }}</h2>
 </a>
-</div>
-
 {% else %}
-<div class="col-4">
 <a href="{{ features.home_page_feature_page.url }}">
 {% image features.home_page_feature_image class="img-fluid" fill-335x335-c100 %}
 <h2 class="mt-2">{{ features.home_page_feature_text }}</h2>
 </a>
-</div>
 {% endif %}
+</div>
 {% endfor %}
+
+
 {% for carousel in page.aspen_carousel.all %}
 {{ carousel.aspen_collection_spotlight_iframe|safe }}
 {% endfor %}
