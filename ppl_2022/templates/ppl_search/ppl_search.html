@@ -1,0 +1,25 @@
+{% load static %}
+<div id="searchBox" class="text-lg-center container mt-1">
+<div class="row">
+
+<form id="altSearch" class="mt-2 form-inline" name="search" action="https://search.pentictonlibrary.ca/Union/Search" method="get">
+ <input name="searchSource" value="local" type="hidden">
+ <input name="basicType" value="Keyword" type="hidden">
+ <input id="altSearchInput" class="col-lg-6 col-6" title="" name="lookfor" value="" type="text" autofocus placeholder="Search the catalogue by keyword">
+ <select name="searchIndex" class="custom-select col-md-2 col-xl-2 col-3" id="searchType" aria-label="Search Index">
+  <option data-searchsource="catalog" value="Keyword">by Keyword</option>
+  <option data-searchsource="catalog" value="Title">by Title</option>
+  <option data-searchsource="catalog" value="StartOfTitle">by Start of Title</option>
+  <option data-searchsource="catalog" value="Series">by Series</option>
+  <option data-searchsource="catalog" value="Author">by Author</option>
+  <option data-search_source="catalog" value="Subject">by Subject</option>
+  <option value="website" name="website">Website</option>
+ </select>
+<button id="searchButton" type="submit" class="btn btn-blue my-1 col-2 col-lg-1 col-xl-1" title="Search" value="Search">GO</button>
+</form>
+
+
+</div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/alt_search.js' %}"></script>
