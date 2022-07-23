@@ -15,6 +15,12 @@
 {% image block.value max-1296x400 class="img-fluid" %}
 </section>
 
+{% elif block.block_type == 'EmailBlock' %}
+<section class="block-email">
+<a href="mailto:{% include_block block %}?subject=Referring to page {{ page.title }}">
+{% include_block block %}
+</a>
+</section>
 {% elif block.block_type == 'ppl_map' and block.value == True %}
 <iframe marginwidth="0" marginheight="0" scrolling="no" width="425" height="350" frameborder="0"
 src="https://www.google.com/maps/d/embed?mid=1Y8Ajzgh-icL5icy_DtdByBbPgz_gJDK-" width="640" height="480"></iframe>
